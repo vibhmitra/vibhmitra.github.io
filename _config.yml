@@ -11,5 +11,7 @@ github_username: vibhmitra
 
 
 # Build Settings
-# theme: jekyll-theme-minimal
-theme: minima
+ # themes  
+     # theme: jekyll-theme-minimal
+     theme: jekyll-theme-cayman
+     # theme: minima
