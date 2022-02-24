@@ -1,2 +1,14 @@
+# Site Settings
+
+title: VibhMitra
+email: vibhanshumitra@gmail.com
 author: Vibhanshu Mitra
+description: >
+  This just my github page.
+baseurl: ""
+url: "https//vibhmitra.github.io"
+github_username: vibhmitra
+
+
+# Build Settings
 theme: jekyll-theme-minimal
