@@ -14,5 +14,5 @@ github_username: vibhmitra
 # themes  
 # theme: jekyll-theme-minimal
 # theme: jekyll-theme-cayman
-# theme: minima
-theme: no-style-please
+theme: minima
+# theme: no-style-please
