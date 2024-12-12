@@ -16,7 +16,11 @@
         <link rel="me" href="https://mstdn.social/@vibh" />
         <script src="https://emoji.fluent-cdn.com/latest/fluentemoji.min.js" crossorigin="anonymous"></script>
         <style>
+            /* Google font imports */
             @import url("https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+            @import url("https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Rowdies:wght@300;400;700&display=swap");
+
+            /* Rest of the CSS */
             html,
             body {
                 height: 100%;
@@ -31,7 +35,7 @@
                 align-items: center;
                 -webkit-justify-content: center;
                 justify-content: center;
-                font-family: "Courier New", "Courier", "Courier Prime", monospace;
+                font-family: "Rowdies", "Courier New", "Courier", "Courier Prime", monospace;
             }
 
             #wrapper {
@@ -45,19 +49,32 @@
                 color: black;
             }
 
+            a:hover {
+                color: rgb(255, 0, 128);
+            }
+
             img {
                 width: 2em;
+            }
+            /* Selection Color */
+            ::-moz-selection {
+                color: rgb(255, 255, 255);
+                background: rgb(0, 0, 0);
+            }
+            ::selection {
+                color: rgb(255, 255, 255);
+                background: rgb(0, 0, 0);
             }
         </style>
     </head>
 
     <body>
         <div id="wrapper" class="emoji">
-            <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Eye/3D/eye_3d.png" />
-            <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Pig%20nose/3D/pig_nose_3d.png" />
-            <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Eye/3D/eye_3d.png" />
+            <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Eye/3D/eye_3d.png" alt="Left Eye Emoji" />
+            <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Pig%20nose/3D/pig_nose_3d.png" alt="Pig Nose Emoji" />
+            <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Eye/3D/eye_3d.png" alt="Right Eye Emoji" />
             <br />
-            Hello, Welkome to the <a href="https://about.me/vibh">Internet</a>!
+            Hi, Welkome to the <a href="https://linktr.ee/vibhmitra" target="_blank">Internet</a>!
             <div style="font-size: 2vw">
                 <pre><b>Now:</b> Probably Doomscrolling</pre>
             </div>
