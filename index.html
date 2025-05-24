@@ -88,6 +88,193 @@
         </div>
         <script>
             <!-- TODO Emoji Bouncing code -->
+
+                "use strict";
+                (function(){
+                    function $ce(tagName){
+                        return document.createElement(tagName);
+                    };
+
+                    function getRandomInt(min,max){
+                        return Math.floor(Math.random()*(max-min+1))+min;
+                    };
+
+                    function appendStyle(style){
+                        const el=$ce("style");
+                        el.type="text/css";
+                        if(el.styleSheet){
+                            el.styleSheet.cssText=style;
+                        }else{
+                            el.appendChild(document.createTextNode(style));
+                        }
+                        document.getElementsByTagName("head")[0].appendChild(el);
+                        return el;
+                    };
+
+                    function onEnd(el,callback,ename){
+                        const func=function(e){
+                            if(el==e.srcElement){
+                                el.removeEventListener(ename,func);
+                                if(callback){callback(e);}
+                            }
+                        };
+                        el.addEventListener(ename,func);
+                    };
+
+                    function onAnimationEnd(el,callback){
+                        onEnd(el,callback,"animationend");
+                    };
+
+                    function insertEmoji(px){
+                        const yy=0;
+                        const style=`
+                #${px.id}.ctower{
+                    position:absolute;
+                    left:0;
+                    top:0;
+                    width:${px.size}em;
+                    height:100%;
+                }
+                #${px.id}.ctower .cbox{
+                    position:relative;
+                    width:100%;
+                    height:${px.size}em;
+                    display:flex;
+                    justify-content:center;
+                    align-items:center;
+                    transform:translateY(-100%);
+                }
+                #${px.id}.ctower .char{
+                    display:inline-block;
+                    font-size:${px.size}em;
+                    line-height:1.1;
+                }
+                #${px.id}.ctower{
+                    animation-name:kf-ctower-${px.id};
+                    animation-fill-mode:forwards;
+                    animation-duration:${px.dura}s;
+                    animation-timing-function:linear;
+                }
+                @keyframes kf-ctower-${px.id}{
+                    0%{
+                        left:0%;
+                        transform:translate(-${100+px.wk}%);
+                    }
+                    100%{
+                        left:100%;
+                        transform:translate(${px.wk}%);
+                    }
+                }
+                #${px.id}.ctower .cbox{
+                    animation-name:kf-cbox-${px.id};
+                    animation-fill-mode:forwards;
+                    animation-duration:${px.dura}s;
+                }
+                @keyframes kf-cbox-${px.id}{
+                    0%{
+                        top:${100-20*px.hk-yy}%;
+                        animation-timing-function:ease-in;
+                    }
+                    15%{
+                        top:${100-0*px.hk-yy}%;
+                        animation-timing-function:ease-out;
+                    }
+                    30%{
+                        top:${100-15*px.hk-yy}%;
+                        animation-timing-function:ease-in;
+                    }
+                    45%{
+                        top:${100-0*px.hk-yy}%;
+                        animation-timing-function:ease-out;
+                    }
+                    60%{
+                        top:${100-10*px.hk-yy}%;
+                        animation-timing-function:ease-in;
+                    }
+                    75%{
+                        top:${100-0*px.hk-yy}%;
+                        animation-timing-function:ease-out;
+                    }
+                    90%{
+                        top:${100-7*px.hk-yy}%;
+                        animation-timing-function:ease-in;
+                    }
+                    100%{
+                        top:${100-0*px.hk-yy}%;
+                    }
+                }
+                #${px.id}.ctower .char{
+                    animation-name:kf-char-${px.id};
+                    animation-fill-mode:forwards;
+                    animation-duration:${px.spin}s;
+                    animation-iteration-count:infinite;
+                    animation-timing-function:linear;
+                }
+                @keyframes kf-char-${px.id}{
+                    0%{
+                        transform:rotateZ(0);
+                    }
+                    100%{
+                        transform:rotateZ(360deg);
+                    }
+                }
+                `;
+                        const el_style=appendStyle(style);
+
+                        const el_char=$ce("div");
+                        el_char.className="char";
+                        el_char.innerHTML=px.char;
+
+                        const el_cbox=$ce("div");
+                        el_cbox.className="cbox";
+                        el_cbox.appendChild(el_char);
+
+                        const el_ctower=$ce("div");
+                        el_ctower.id=px.id;
+                        el_ctower.className="ctower";
+                        el_ctower.appendChild(el_cbox);
+
+                        onAnimationEnd(el_ctower,function(){
+                            el_ctower.remove();
+                            el_style.remove();
+                        });
+
+                        document.body.appendChild(el_ctower);
+                    };
+
+                    /*
+                        const emojix=[
+                        "😀","😃","😄","😁","😆","😅","😂","🤣","😊","😇",
+                        "🙂","🙃","😉","😌","😍","😘","😗","😙","😚","😋",
+                        "😛","😝","😜","🤪","🤨","🧐","🤓","😎","🤩","😏",
+                        "😒","😞","😔","😟","😕","🙁","😣","😖","😫","😩",
+                        "😢","😭","😤","😠","😡","🤬","🤯","😳","😱","😨",
+                        "😰","😥","😓","🤗","🤔","😑","😬","🙄","😲","😴",
+                        "🤤","😪","😵","😵‍","🤐","🤢","😷","🤒","🤕","🤑",
+                        "🤠","😈"];
+                    */
+                    const emojix=[
+                        "👁️", "🐽"
+                    ];
+
+                    let idx=0;
+                    const timer_id=setInterval(function(){
+                        if(document.querySelectorAll(".ctower").length<10){
+                            idx++;
+                            const id="id"+(10000+idx);
+                            const px={
+                                id,
+                                char:emojix[getRandomInt(0,emojix.length-1)],
+                                size:getRandomInt(4,10),
+                                dura:getRandomInt(4,8),
+                                spin:getRandomInt(0.8,5),
+                                wk:getRandomInt(20,100),
+                                hk:getRandomInt(2,5)
+                            };
+                            insertEmoji(px);
+                        }
+                    },1000);
+                })();
         </script>
     </body>
 </html>
