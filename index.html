@@ -83,11 +83,33 @@
             <br />
             Hi, Welkome to the <a href="https://linktr.ee/vibhmitra" target="_blank">Internet</a>!
             <div style="font-size: 2vw">
-                <pre><b>Now:</b> Probably Doomscrolling</pre>
+                <pre><b>Now:</b> Probably <span id="nowText"></span></pre>
             </div>
         </div>
         <script>
-            <!-- TODO Emoji Bouncing code -->
+           // Noooowwww ugghh!
+            const now_string = [ 
+                "Doomscrolling! 📜", 
+                "Daydreaming! 🌙", 
+                "Eating Junkfood! 🍟", 
+                "Stressing Out! 😢", 
+                "NOT Studying! 🤔",
+                "Talking with AI! ✨",
+                "Listening Vocaloid Songs! 🔉",
+                "Cooking Some Weird Shit! 🫨",
+                "Staring @ Ceiling 👁️👁️",
+                "On Bedge Mode! 🛌"
+            ]; 
+            function updateNowText() { 
+                const randomIndex = Math.floor(Math.random() * now_string.length); 
+                const randomValue = now_string[randomIndex]; 
+                document.getElementById("nowText").textContent = randomValue; 
+            } 
+            
+            window.onload = updateNowText;
+
+
+            // Todo Emoji Bouncing code
 
                 "use strict";
                 (function(){
@@ -252,12 +274,12 @@
                         "😰","😥","😓","🤗","🤔","😑","😬","🙄","😲","😴",
                         "🤤","😪","😵","😵‍","🤐","🤢","😷","🤒","🤕","🤑",
                         "🤠","😈"];
-                    */
+                    */ 
                     const emojix=[
                         "👁️", "🐽", "👁️",
                         "👁️", "🐽", "👁️",
                         "👁️", "🐽", "👁️"
-                    ];
+                    ]; 
 
                     let idx=0;
                     const timer_id=setInterval(function(){
@@ -267,7 +289,7 @@
                             const px={
                                 id,
                                 char:emojix[getRandomInt(0,emojix.length-1)],
-                                size:getRandomInt(4,10),
+                                size:getRandomInt(3,5),
                                 dura:getRandomInt(4,8),
                                 spin:getRandomInt(0.8,5),
                                 wk:getRandomInt(20,100),
